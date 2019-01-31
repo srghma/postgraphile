@@ -188,11 +188,11 @@ name!), so we'll use that name here:
 createdb pggql_test
 ```
 
-We must then export a `TEST_DATABASE_URL` environment variable so the tests
+We must then export a `TEST_PG_URL` environment variable so the tests
 know where to install. **WARNING**: this database will be overwritten!
 
 ```
-export TEST_DATABASE_URL="postgres://localhost/pggql_test"
+export TEST_PG_URL="postgres://localhost/pggql_test"
 ```
 
 Then you can run the tests with
