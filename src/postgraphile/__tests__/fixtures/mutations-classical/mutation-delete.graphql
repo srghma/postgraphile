@@ -1,0 +1,56 @@
+mutation {
+  a: deletePost(input: { id: "WyJwb3N0cyIsMV0=" }) { ...deletePostPayload }
+  b: deletePost(input: { id: "WyJwb3N0cyIsMl0=", clientMutationId: "hello" }) { ...deletePostPayload }
+  c: deletePost(input: { id: "WyJwb3N0cyIsMjAwMF0=" }) { ...deletePostPayload }
+  d: deletePost(input: { id: "WyJwb3N0cyIsM10=", clientMutationId: "world" }) { ...deletePostPayload }
+  e: deletePostByRowId(input: { rowId: 6 }) { ...deletePostPayload }
+  f: deletePostByRowId(input: { rowId: 9, clientMutationId: "hello" }) { ...deletePostPayload }
+  g: deletePostByRowId(input: { rowId: 2000 }) { ...deletePostPayload }
+  h: deletePostByRowId(input: { rowId: 11, clientMutationId: "world" }) { ...deletePostPayload }
+  i: deleteCompoundKey(input: { id: "WyJjb21wb3VuZF9rZXlzIiw0LDNd" }) { ...deleteCompoundKeyPayload }
+  j: deleteCompoundKeyByPersonId1AndPersonId2(input: { personId1: 2, personId2:3 }) { ...deleteCompoundKeyPayload }
+  k: deletePersonByEmail(input: { email: "budd.deey@email.com" }) { ...deletePersonPayload }
+}
+
+fragment deletePostPayload on DeletePostPayload {
+  clientMutationId
+  deletedPostId
+  post {
+    id
+    rowId
+    headline
+    authorId
+  }
+  query { id }
+}
+
+fragment deleteCompoundKeyPayload on DeleteCompoundKeyPayload {
+  clientMutationId
+  deletedCompoundKeyId
+  compoundKey {
+    id
+    personId1
+    personId2
+    personByPersonId1 {
+      id
+      name
+    }
+    personByPersonId2 {
+      id
+      name
+    }
+  }
+  query { id }
+}
+
+fragment deletePersonPayload on DeletePersonPayload {
+  clientMutationId
+  deletedPersonId
+  person {
+    id
+    rowId
+    name
+    email
+  }
+  query { id }
+}
